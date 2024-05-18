@@ -1,4 +1,4 @@
-package com.health.beefit
+package com.health.beefit.activities
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.gson.Gson
+import com.health.beefit.R
+import com.health.beefit.data.ApiService
+import com.health.beefit.data.RegistrationData
+import com.health.beefit.data.RegistrationResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -80,11 +83,18 @@ class SignupActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val registrationResponse = response.body()
                         // Handle successful response
-                        Toast.makeText(this@SignupActivity, registrationResponse?.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SignupActivity, "You're all set!", Toast.LENGTH_SHORT).show()
+
+//                        // Navigate to the user page
+//                        val intent = Intent(this@SignupActivity, HomePageActivity::class.java)
+//                        startActivity(intent)
+
+                        // Finish the current activity (optional)
+                        finish()
                     } else {
                         // Handle error response
                         Log.e("SignupActivity", "Signup failed with code: ${response.code()}")
-                        Toast.makeText(this@SignupActivity, "Signup failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SignupActivity, "Signup failed. Please try again", Toast.LENGTH_SHORT).show()
                     }
                 }
 

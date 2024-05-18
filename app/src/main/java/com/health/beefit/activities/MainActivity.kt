@@ -1,4 +1,4 @@
-package com.health.beefit
+package com.health.beefit.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.ImageView
+import com.health.beefit.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.health.beefit
+package com.health.beefit.data
 
 import retrofit2.Call
 import retrofit2.http.*

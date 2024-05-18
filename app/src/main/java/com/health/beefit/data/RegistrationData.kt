@@ -1,4 +1,4 @@
-package com.health.beefit
+package com.health.beefit.data
 data class RegistrationData(
     val firstName: String,
     val lastName: String,
