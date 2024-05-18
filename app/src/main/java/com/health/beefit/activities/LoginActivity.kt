@@ -1,5 +1,6 @@
 package com.health.beefit.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -16,6 +17,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.health.beefit.utils.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -73,7 +75,12 @@ class LoginActivity : AppCompatActivity() {
                                 Log.d("LoginActivity", "Password: $password")
 //                                Log.d("LoginActivity", "Token: $token")
                                 Toast.makeText(this@LoginActivity, "Login Succeeded!", Toast.LENGTH_SHORT).show()
-                                // Proceed with appropriate action (e.g., navigate to home page)
+
+                                // Start the homepage activity and pass the token as an extra
+                                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                                intent.putExtra("token", token)
+                                startActivity(intent)
+                                finish() // Finish the current activity to prevent going back to the login screen
                             } else {
                                 // Handle the case where response body is null
                             }

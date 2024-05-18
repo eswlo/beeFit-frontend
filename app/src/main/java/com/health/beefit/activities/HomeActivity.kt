@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.health.beefit.R
 
 class HomeActivity : AppCompatActivity() {
@@ -17,5 +18,12 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.homeBottomNavigationView)
+        val menu = bottomNavigationView.menu
+        menu.findItem(R.id.plansMenu).isVisible = true
+        menu.findItem(R.id.rewardsMenu).isVisible = true
+        menu.findItem(R.id.settingsMenu).isVisible = true
+
     }
 }
