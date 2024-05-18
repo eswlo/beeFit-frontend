@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Initialize Retrofit
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.50.101:3000") // backend API base URL
+            .baseUrl("http://192.168.0.76:3000") // backend API base URL
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -71,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                                 val token = loginResponse.token
                                 Log.d("LoginActivity", "Username: $userName")
                                 Log.d("LoginActivity", "Password: $password")
+//                                Log.d("LoginActivity", "Token: $token")
                                 Toast.makeText(this@LoginActivity, "Login Succeeded!", Toast.LENGTH_SHORT).show()
                                 // Proceed with appropriate action (e.g., navigate to home page)
                             } else {
