@@ -21,10 +21,13 @@ class AuthenticationActivity : AppCompatActivity() {
             insets
         }
 
+        val serverUrl = "http://192.168.0.76:3000" // Specify backend API base URL here
+
         val signUpButton: Button = findViewById<Button>(R.id.signupButton)
         signUpButton.setOnClickListener {
             // Start the SignupActivity
             val intent = Intent(this@AuthenticationActivity, SignupActivity::class.java)
+            intent.putExtra("SERVER_URL", serverUrl)
             startActivity(intent)
         }
 
@@ -32,6 +35,7 @@ class AuthenticationActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             // Start the LoginActivity
             val intent = Intent(this@AuthenticationActivity, LoginActivity::class.java)
+            intent.putExtra("SERVER_URL", serverUrl)
             startActivity(intent)
         }
 

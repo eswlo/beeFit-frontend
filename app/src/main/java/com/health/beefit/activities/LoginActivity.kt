@@ -23,6 +23,8 @@ import com.health.beefit.utils.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var apiService: ApiService
+    private lateinit var serverUrl: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,9 +35,19 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
+        // Retrieve backend server URL from intent extras
+        serverUrl = intent.getStringExtra("SERVER_URL") ?: ""
+        if (serverUrl.isEmpty()) {
+            // Handle the case where server URL is not passed
+            Log.e("SignupActivity", "Server URL is not provided!")
+            Toast.makeText(this, "Server URL is not provided!", Toast.LENGTH_SHORT).show()
+            finish() // Close the activity
+            return
+        }
+
         // Initialize Retrofit
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.76:3000") // backend API base URL
+            .baseUrl(serverUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
