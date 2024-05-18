@@ -11,7 +11,7 @@
 
     <!-- Greeting Text -->
     <TextView
-        android:id="@+id/greetingText"
+        android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to beeFit!"
@@ -30,9 +30,9 @@
         android:text="let's create an account!"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/greetingText"
-        app:layout_constraintStart_toStartOf="@id/greetingText"
-        app:layout_constraintEnd_toEndOf="@id/greetingText"
+        app:layout_constraintTop_toBottomOf="@id/loginText"
+        app:layout_constraintStart_toStartOf="@id/loginText"
+        app:layout_constraintEnd_toEndOf="@id/loginText"
         android:layout_marginTop="10dp"
         android:paddingRight="150dp"/>
 
@@ -125,7 +125,7 @@
         android:layout_marginTop="16dp"/>
 
     <ImageView
-        android:id="@+id/image6ImageView"
+        android:id="@+id/bikeImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/image6"
@@ -145,9 +145,9 @@
         android:text="beeFit"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/image6ImageView"
-        app:layout_constraintStart_toStartOf="@id/image6ImageView"
-        app:layout_constraintEnd_toEndOf="@id/image6ImageView"
+        app:layout_constraintTop_toTopOf="@id/bikeImageView"
+        app:layout_constraintStart_toStartOf="@id/bikeImageView"
+        app:layout_constraintEnd_toEndOf="@id/bikeImageView"
         android:layout_marginTop="50dp"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="10dp"/>

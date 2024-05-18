@@ -21,19 +21,19 @@ class AuthenticationActivity : AppCompatActivity() {
             insets
         }
 
-        val loginButton: Button = findViewById<Button>(R.id.signupButton)
-        loginButton.setOnClickListener {
-            // Start the LoginActivity
+        val signUpButton: Button = findViewById<Button>(R.id.signupButton)
+        signUpButton.setOnClickListener {
+            // Start the SignupActivity
             val intent = Intent(this@AuthenticationActivity, SignupActivity::class.java)
             startActivity(intent)
         }
 
-//        val signUpButton: Button = findViewById(R.id.signupButton)
-//        signUpButton.setOnClickListener {
-//            // Start the SignUpActivity
-//            val intent = Intent(this@AuthenticationActivity, SignUpActivity::class.java)
-//            startActivity(intent)
-//        }
+        val loginButton: Button = findViewById(R.id.loginButton)
+        loginButton.setOnClickListener {
+            // Start the LoginActivity
+            val intent = Intent(this@AuthenticationActivity, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

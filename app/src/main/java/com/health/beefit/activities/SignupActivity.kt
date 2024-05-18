@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.health.beefit.R
 import com.health.beefit.data.ApiService
-import com.health.beefit.data.RegistrationData
+import com.health.beefit.data.UserData
 import com.health.beefit.data.RegistrationResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,7 +35,7 @@ class SignupActivity : AppCompatActivity() {
 
         // Initialize Retrofit
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://0.0.0.0:3000") // backend API base URL
+            .baseUrl("http://192.168.50.101:3000") // backend API base URL
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -75,9 +75,9 @@ class SignupActivity : AppCompatActivity() {
                 return@setOnClickListener  // Return to prevent further execution
             }
 
-            val registrationData = RegistrationData(firstName, lastName, phoneNumber, email, userName, password)
+            val userData = UserData(firstName, lastName, phoneNumber, email, userName, password)
             // Call the signUp method defined in ApiService
-            val call = apiService.signUp(registrationData)
+            val call = apiService.signUp(userData)
             call.enqueue(object : Callback<RegistrationResponse> {
                 override fun onResponse(call: Call<RegistrationResponse>, response: Response<RegistrationResponse>) {
                     if (response.isSuccessful) {

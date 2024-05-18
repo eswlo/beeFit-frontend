@@ -1,5 +1,5 @@
 package com.health.beefit.data
-data class RegistrationData(
+data class UserData(
     val firstName: String,
     val lastName: String,
     val phoneNumber: String,

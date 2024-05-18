@@ -6,11 +6,11 @@ import retrofit2.http.*
 interface ApiService {
 
     @POST("/api/users")
-    fun signUp(@Body registrationData: RegistrationData): Call<RegistrationResponse>
+    fun signUp(@Body userData: UserData): Call<RegistrationResponse>
 
-//    @POST("login")
-//    fun login(@Body loginData: LoginData): Call<LoginResponse>
-//
+    @POST("/api/users/login")
+    fun logIn(@Body loginRequest: LoginRequest): Call<LoginResponse>
+
 //    @PUT("users/{id}")
 //    fun updateUser(@Path("id") userId: String, @Body updateData: UpdateUserData): Call<UserResponse>
 //
