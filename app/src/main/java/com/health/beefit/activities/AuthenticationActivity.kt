@@ -21,7 +21,7 @@ class AuthenticationActivity : AppCompatActivity() {
             insets
         }
 
-        val serverUrl = "http://192.168.0.76:3000" // Specify backend API base URL here
+        val serverUrl = "http://192.168.50.101:3000" // Specify backend API base URL here
 
         val signUpButton: Button = findViewById<Button>(R.id.signupButton)
         signUpButton.setOnClickListener {

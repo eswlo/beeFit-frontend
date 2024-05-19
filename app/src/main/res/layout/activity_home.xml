@@ -16,6 +16,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/homeFragmentContainerView"
+            android:name="com.health.beefit.activities.fragments.HomeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_home"/>
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
