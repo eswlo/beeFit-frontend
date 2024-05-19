@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.health.beefit.R
-import com.health.beefit.data.ApiService
+import com.health.beefit.utils.ApiService
 import com.health.beefit.data.UserData
 import com.health.beefit.data.RegistrationResponse
 import retrofit2.Call

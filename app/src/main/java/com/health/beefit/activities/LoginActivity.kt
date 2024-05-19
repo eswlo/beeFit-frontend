@@ -91,6 +91,7 @@ class LoginActivity : AppCompatActivity() {
                                 // Start the homepage activity and pass the token as an extra
                                 val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                                 intent.putExtra("token", token)
+                                intent.putExtra("SERVER_URL", serverUrl)
                                 startActivity(intent)
                                 finish() // Finish the current activity to prevent going back to the login screen
                             } else {

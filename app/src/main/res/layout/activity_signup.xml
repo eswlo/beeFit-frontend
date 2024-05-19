@@ -11,7 +11,7 @@
 
     <!-- Greeting Text -->
     <TextView
-        android:id="@+id/loginText"
+        android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to beeFit!"
@@ -32,9 +32,9 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@id/loginText"
-        app:layout_constraintStart_toStartOf="@id/loginText"
-        app:layout_constraintEnd_toEndOf="@id/loginText"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        app:layout_constraintStart_toStartOf="@id/welcomeText"
+        app:layout_constraintEnd_toEndOf="@id/welcomeText"
         android:layout_marginTop="10dp"
         android:paddingRight="150dp"/>
 

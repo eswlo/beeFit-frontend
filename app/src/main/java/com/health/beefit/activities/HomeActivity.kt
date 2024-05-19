@@ -1,6 +1,7 @@
 package com.health.beefit.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +10,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.health.beefit.R
 import com.health.beefit.activities.fragments.*
+import com.health.beefit.utils.JWTUtils
 
 class HomeActivity : AppCompatActivity() {
+
+    private lateinit var token: String
+    private lateinit var userId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,6 +24,24 @@ class HomeActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Get token
+        token = intent.getStringExtra("token") ?: ""
+
+        // Decode the JWT token
+        val decodedJWT = JWTUtils.decodeJWT(token)
+
+        // Check if decoding was successful and the payload is not null
+        if (decodedJWT != null) {
+            // Extract user ID from the decoded JWT payload
+            userId = decodedJWT.getString("userId")
+
+            // Log user ID
+            Log.d("UserID", "User ID: $userId")
+        } else {
+            // Decoding failed or invalid JWT token
+            Log.d("UserID", "Fail to obtain user id from token")
         }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.homeBottomNavigationView)
@@ -53,8 +76,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.homeMenu -> {
                     // Replace the current fragment with the home fragment
+                    val homeFragment = HomeFragment.newInstance(userId)
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.homeFragmentContainerView, HomeFragment())
+                        .replace(R.id.homeFragmentContainerView, homeFragment)
                         .commit()
                     true
                 }
@@ -62,6 +86,11 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-
+        // Replace the initial fragment with the HomeFragment
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.homeFragmentContainerView, HomeFragment.newInstance(userId))
+                .commit()
+        }
     }
 }

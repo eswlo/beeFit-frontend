@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/g12"
     tools:context=".activities.fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Greeting Text -->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/helloText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="hello_home_fragment" />
+        android:text="Hello"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="150dp"
+        android:layout_marginLeft="30dp"
+        />
 
-</FrameLayout>
+    <!-- User First Name Text -->
+    <TextView
+        android:id="@+id/userFNText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/helloText"
+        app:layout_constraintStart_toStartOf="@id/helloText"
+        app:layout_constraintEnd_toEndOf="@id/helloText"
+        android:paddingTop="10dp"
+        android:layout_marginLeft="0dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

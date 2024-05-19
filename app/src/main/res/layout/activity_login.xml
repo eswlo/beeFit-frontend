@@ -24,7 +24,7 @@
 
     <!-- Login Text -->
     <TextView
-        android:id="@+id/loginText"
+        android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login Details"
@@ -46,9 +46,9 @@
         android:hint="Username"
         android:textColor="#000000"
         android:textColorHint="#808080"
-        app:layout_constraintTop_toBottomOf="@id/loginText"
-        app:layout_constraintStart_toStartOf="@id/loginText"
-        app:layout_constraintEnd_toEndOf="@id/loginText"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        app:layout_constraintStart_toStartOf="@id/welcomeText"
+        app:layout_constraintEnd_toEndOf="@id/welcomeText"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"/>
 
@@ -61,8 +61,8 @@
         android:textColor="#000000"
         android:textColorHint="#808080"
         app:layout_constraintTop_toBottomOf="@id/usernameLoginEditText"
-        app:layout_constraintStart_toStartOf="@id/loginText"
-        app:layout_constraintEnd_toEndOf="@id/loginText"
+        app:layout_constraintStart_toStartOf="@id/welcomeText"
+        app:layout_constraintEnd_toEndOf="@id/welcomeText"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"/>
 
@@ -75,7 +75,7 @@
             android:textColor="#808080"
             android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/passwordLoginEditText"
-            app:layout_constraintStart_toStartOf="@id/loginText"
+            app:layout_constraintStart_toStartOf="@id/welcomeText"
             android:layout_marginTop="5dp"
             android:paddingLeft="170dp"/>
 
