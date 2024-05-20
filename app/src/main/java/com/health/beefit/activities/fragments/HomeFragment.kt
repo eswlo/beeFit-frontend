@@ -1,12 +1,15 @@
 package com.health.beefit.activities.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import com.health.beefit.R
+import com.health.beefit.activities.WorkoutActivity
 import com.health.beefit.data.UserData
 import com.health.beefit.utils.*
 import retrofit2.Call
@@ -51,10 +54,9 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // Find the TextView where you want to display the user's first name
+        // Find the TextView where you want to display the user's first name & point
         val userFNTextView = view.findViewById<TextView>(R.id.userFNText)
-
-
+        val userPointTextView = view.findViewById<TextView>(R.id.pointsText)
 
         if (userId != null) {
             val call = apiService.getOneUserById(userId!!)
@@ -63,7 +65,8 @@ class HomeFragment : Fragment() {
                     userData = response.body()
                     // Display user first name if userData is not null
                     userData?.let {
-                        userFNTextView.text = it.firstName // Set the text of the TextView
+                        userFNTextView.text = it.firstName + "!" // Set the text of the TextView
+                        userPointTextView.text = it.earnedPoints.toString() + " Points" // Set the text of the TextView
                     }
                 }
 
@@ -71,6 +74,15 @@ class HomeFragment : Fragment() {
                     // Handle network error
                 }
             })
+        }
+
+        val button = view.findViewById<Button>(R.id.startWorkoutButton)
+
+        // Set up a click listener for the startWorkoutButton
+        button.setOnClickListener {
+            val intent = Intent(activity, WorkoutActivity::class.java)
+            intent.putExtra("userId", userId)
+            startActivity(intent)
         }
 
         return view

@@ -28,14 +28,62 @@
         android:id="@+id/userFNText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:textColor="#000000"
+        android:text="user"
         app:layout_constraintTop_toBottomOf="@id/helloText"
         app:layout_constraintStart_toStartOf="@id/helloText"
         app:layout_constraintEnd_toEndOf="@id/helloText"
         android:paddingTop="10dp"
         android:layout_marginLeft="0dp"
         />
+
+    <!-- Current Text -->
+    <TextView
+        android:id="@+id/curText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="You currently have"
+        app:layout_constraintTop_toBottomOf="@id/userFNText"
+        app:layout_constraintStart_toStartOf="@id/userFNText"
+        app:layout_constraintEnd_toEndOf="@id/userFNText"
+        android:paddingTop="10dp"
+        android:layout_marginLeft="0dp"
+        />
+
+    <!-- Point Text -->
+    <TextView
+        android:id="@+id/pointsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="#points"
+        app:layout_constraintTop_toBottomOf="@id/curText"
+        app:layout_constraintStart_toStartOf="@id/curText"
+        app:layout_constraintEnd_toEndOf="@id/curText"
+        android:paddingTop="10dp"
+        android:layout_marginLeft="0dp"
+        />
+
+    <!-- Start Workout Button -->
+    <Button
+        android:id="@+id/startWorkoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        app:layout_constraintTop_toBottomOf="@id/pointsText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Start Today's Workout"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        app:backgroundTint="#f2a000"
+        android:background="@drawable/button_register"
+        android:layout_marginTop="100dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
