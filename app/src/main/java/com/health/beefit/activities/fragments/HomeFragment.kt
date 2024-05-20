@@ -7,6 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.health.beefit.R
+import com.health.beefit.data.UserData
+import com.health.beefit.utils.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,13 +27,21 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var userId: String? = null
 //    private var param2: String? = null
+    private lateinit var apiService: ApiService
+    private var userData: UserData? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Retrieve userId from passed in argument
         arguments?.let {
             userId = it.getString(ARG_USERID)
 //            param2 = it.getString(ARG_PARAM2)
         }
+
+        // Initialize ApiService
+        apiService = NetworkService.apiService
     }
 
     override fun onCreateView(
@@ -38,11 +51,27 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // Find the TextView where you want to display the userId
-        val userIdTextView = view.findViewById<TextView>(R.id.userFNText)
+        // Find the TextView where you want to display the user's first name
+        val userFNTextView = view.findViewById<TextView>(R.id.userFNText)
 
-        // Set the text of the TextView to the userId
-        userIdTextView.text = userId
+
+
+        if (userId != null) {
+            val call = apiService.getOneUserById(userId!!)
+            apiService.getOneUserById(userId!!).enqueue(object : Callback<UserData> {
+                override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
+                    userData = response.body()
+                    // Display user first name if userData is not null
+                    userData?.let {
+                        userFNTextView.text = it.firstName // Set the text of the TextView
+                    }
+                }
+
+                override fun onFailure(call: Call<UserData>, t: Throwable) {
+                    // Handle network error
+                }
+            })
+        }
 
         return view
     }

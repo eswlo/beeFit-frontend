@@ -13,6 +13,7 @@ import com.health.beefit.R
 import com.health.beefit.utils.ApiService
 import com.health.beefit.data.UserData
 import com.health.beefit.data.RegistrationResponse
+import com.health.beefit.utils.NetworkService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var apiService: ApiService
-    private lateinit var serverUrl: String
+//    private lateinit var serverUrl: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,23 +35,10 @@ class SignupActivity : AppCompatActivity() {
             insets
         }
 
-        // Retrieve backend server URL from intent extras
-        serverUrl = intent.getStringExtra("SERVER_URL") ?: ""
-        if (serverUrl.isEmpty()) {
-            // Handle the case where server URL is not passed
-            Log.e("SignupActivity", "Server URL is not provided!")
-            Toast.makeText(this, "Server URL is not provided!", Toast.LENGTH_SHORT).show()
-            finish() // Close the activity
-            return
-        }
 
-        // Initialize Retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl(serverUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        // Initialize ApiService
+        apiService = NetworkService.apiService
 
-        apiService = retrofit.create(ApiService::class.java)
         val registerButton = findViewById<Button>(R.id.registerButton)
         val firstNameEditText = findViewById<EditText>(R.id.firstNameEditText)
         val lastNameEditText = findViewById<EditText>(R.id.lastNameEditText)

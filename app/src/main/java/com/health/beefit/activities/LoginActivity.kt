@@ -15,15 +15,12 @@ import com.health.beefit.data.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import com.health.beefit.utils.*
 
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var apiService: ApiService
-    private lateinit var serverUrl: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,27 +32,13 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        // Retrieve backend server URL from intent extras
-        serverUrl = intent.getStringExtra("SERVER_URL") ?: ""
-        if (serverUrl.isEmpty()) {
-            // Handle the case where server URL is not passed
-            Log.e("SignupActivity", "Server URL is not provided!")
-            Toast.makeText(this, "Server URL is not provided!", Toast.LENGTH_SHORT).show()
-            finish() // Close the activity
-            return
-        }
 
-        // Initialize Retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl(serverUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        // Initialize ApiService
+        apiService = NetworkService.apiService
 
-        apiService = retrofit.create(ApiService::class.java)
         val loginButton = findViewById<Button>(R.id.loginButton)
         val usernameEditText = findViewById<EditText>(R.id.usernameLoginEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordLoginEditText)
-
 
         // click listener for the login button
         loginButton.setOnClickListener {
@@ -91,7 +74,6 @@ class LoginActivity : AppCompatActivity() {
                                 // Start the homepage activity and pass the token as an extra
                                 val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                                 intent.putExtra("token", token)
-                                intent.putExtra("SERVER_URL", serverUrl)
                                 startActivity(intent)
                                 finish() // Finish the current activity to prevent going back to the login screen
                             } else {
@@ -122,6 +104,7 @@ class LoginActivity : AppCompatActivity() {
                     // Handle network errors or exceptions
                     Log.e("LoginActivity", "Failed to send login request", t)
                     Toast.makeText(this@LoginActivity, "Failed to send login request", Toast.LENGTH_SHORT).show()
+                    // if fail, maybe check the URL in NetworkService utils
                 }
             })
 
