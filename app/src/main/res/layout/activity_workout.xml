@@ -8,6 +8,21 @@
     android:background="@drawable/g12"
     tools:context=".activities.WorkoutActivity">
 
+    <!-- Status Text -->
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="350dp"
+        />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

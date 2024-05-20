@@ -7,6 +7,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -18,6 +19,10 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var sensorManger: SensorManager
     private var sensorStarted = false
+    private var previousSides: Float = 0.0f // Variable to store the previous value of sides
+    private var previousUpDown: Float = 0.0f // Variable to store the previous value of upDown
+    private val epsilon: Float = 0.05f // Small threshold to account for very minor changes
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -66,7 +71,28 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
         if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
             val sides = event.values[0]
             val upDown = event.values[1]
-            Log.d("SENSOR", "Acceleration: sides=$sides, upDown=$upDown")
+
+            // Calculate the difference between the current and previous sides & upDown value
+            val sidesDifference = Math.abs(sides - previousSides)
+            val upDownDifference = Math.abs(upDown - previousUpDown)
+
+            // Update the variables for the next iteration
+            previousSides = sides
+            previousUpDown = upDown
+
+            // Determine the status based on sensor values
+            val statusText = if (sidesDifference > epsilon || upDownDifference > epsilon) {
+                "Moving"
+            } else {
+                "Stationary"
+            }
+
+            // Update the status text view
+            findViewById<TextView>(R.id.statusText).text = statusText
+
+            Log.d("STATUS_TEXT", "Status Text: $statusText")
+
+//            Log.d("SENSOR", "Acceleration: sides=$sides, upDown=$upDown")
         }
     }
 
