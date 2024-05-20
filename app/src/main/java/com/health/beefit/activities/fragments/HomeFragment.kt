@@ -76,12 +76,13 @@ class HomeFragment : Fragment() {
             })
         }
 
-        val button = view.findViewById<Button>(R.id.startWorkoutButton)
+        val startWorkoutBtn = view.findViewById<Button>(R.id.startWorkoutButton)
 
         // Set up a click listener for the startWorkoutButton
-        button.setOnClickListener {
+        startWorkoutBtn.setOnClickListener {
             val intent = Intent(activity, WorkoutActivity::class.java)
             intent.putExtra("userId", userId)
+            intent.putExtra("earnedPoints", userData!!.earnedPoints!!.toInt())
             startActivity(intent)
         }
 
