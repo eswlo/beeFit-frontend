@@ -5,6 +5,8 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -21,6 +23,7 @@ import com.health.beefit.utils.NetworkService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.abs
 
 class WorkoutActivity : AppCompatActivity(), SensorEventListener {
 
@@ -33,10 +36,24 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
     private var previousUpDown: Float = 0.0f // Variable to store the previous value of upDown
     private val epsilon: Float = 0.05f // Small threshold to account for very minor changes
 
+    //var for counter
+    private var isRunning = false
+    private var counterSeconds = 0
+    private var counterPoints = 0
+    private var statusText = "Not Started Yet"
+    private val handler = Handler(Looper.getMainLooper())
+    private val runnable = object : Runnable {
+        override fun run() {
+            counterSeconds++
+            handler.postDelayed(this, 1000)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_workout)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -70,7 +87,12 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
                 sensorManger.unregisterListener(this)
             }
 
-            earnedPoints+=5
+            // Convert counterSeconds into minutes for points
+            // May change the formula depending the need
+//            counterPoints = (counterSeconds % 3600) / 60
+//            earnedPoints += counterPoints
+
+            earnedPoints+= counterSeconds
             val updatePoints = UpdatePoints(earnedPoints)
             val call = apiService.updateEarnedPoints(userId, updatePoints)
 
@@ -96,11 +118,23 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
                     Toast.makeText(this@WorkoutActivity, "Failed to update points", Toast.LENGTH_SHORT).show()
                 }
             })
-
-
-
             //finish the current workout activity and return the HomeFragment
             finish()
+        }
+    }
+
+
+    private fun startCounter() {
+        if(!isRunning) {
+            handler.postDelayed(runnable, 1000)
+            isRunning = true
+        }
+    }
+
+    private fun pauseCounter() {
+        if(isRunning) {
+            handler.removeCallbacks(runnable)
+            isRunning = false
         }
     }
 
@@ -120,24 +154,27 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
             val upDown = event.values[1]
 
             // Calculate the difference between the current and previous sides & upDown value
-            val sidesDifference = Math.abs(sides - previousSides)
-            val upDownDifference = Math.abs(upDown - previousUpDown)
+            val sidesDifference = abs(sides - previousSides)
+            val upDownDifference = abs(upDown - previousUpDown)
 
             // Update the variables for the next iteration
             previousSides = sides
             previousUpDown = upDown
 
             // Determine the status based on sensor values
-            val statusText = if (sidesDifference > epsilon || upDownDifference > epsilon) {
-                "Moving"
+            if (sidesDifference > epsilon || upDownDifference > epsilon) {
+                startCounter()
+                statusText = "Moving"
             } else {
-                "Stationary"
+                pauseCounter()
+                statusText = "Stationary"
             }
 
             // Update the status text view
             findViewById<TextView>(R.id.statusText).text = statusText
 
             Log.d("STATUS_TEXT", "Status Text: $statusText")
+            Log.d("COUNTER_SECONDS", "Counter Seconds: $counterSeconds")
 
 //            Log.d("SENSOR", "Acceleration: sides=$sides, upDown=$upDown")
         }
