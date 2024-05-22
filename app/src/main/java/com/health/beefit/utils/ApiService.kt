@@ -4,6 +4,7 @@ import com.health.beefit.data.LoginRequest
 import com.health.beefit.data.LoginResponse
 import com.health.beefit.data.RegistrationResponse
 import com.health.beefit.data.UpdatePoints
+import com.health.beefit.data.UpdateRewards
 import com.health.beefit.data.UserData
 import retrofit2.Call
 import retrofit2.http.Body
@@ -26,7 +27,11 @@ interface ApiService {
     @GET("/api/users/{id}")
     fun getOneUserById(@Path("id") id: String): Call<UserData>
 
-    // Update user by ID
+    // Update earned points by ID
     @PUT("/api/users/{id}")
     fun updateEarnedPoints(@Path("id") userId: String, @Body updatePoints: UpdatePoints): Call<UserData>
+
+    // Update rewards by ID
+    @PUT("/api/users/{id}")
+    fun updateRewards(@Path("id") userId: String, @Body updateRewards: UpdateRewards): Call<UserData>
 }

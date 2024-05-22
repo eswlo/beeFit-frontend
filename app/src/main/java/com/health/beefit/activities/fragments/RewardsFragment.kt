@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.health.beefit.R
 import com.health.beefit.data.UpdatePoints
+import com.health.beefit.data.UpdateRewards
 import com.health.beefit.data.UserData
 import com.health.beefit.utils.ApiService
 import com.health.beefit.utils.NetworkService
@@ -110,8 +111,7 @@ class RewardsFragment : Fragment() {
                     .setMessage("Do you want to redeem your points for an Arc'teryx reward?")
                     .setPositiveButton("Yes") { dialog, which ->
                         earnedPoints -= arcPoints
-                        println(earnedPoints)
-                        updateUserEarnedPoints(earnedPoints)
+                        updatePointsAndRewards(earnedPoints, "arc'teryx")
                         dialog.dismiss()
                     }
                     .setNegativeButton("No") { dialog, which ->
@@ -127,9 +127,19 @@ class RewardsFragment : Fragment() {
         return view
     }
 
-    private fun updateUserEarnedPoints(updatedEarnedPoints: Int) {
+    private fun updatePointsAndRewards(updatedEarnedPoints: Int, rewardBrand: String) {
+        var mutableRewardsMap = mutableMapOf<String, Number>()
+        if ((userData!!.rewards.isEmpty()) || !userData!!.rewards.containsKey(rewardBrand)) {
+            mutableRewardsMap = userData!!.rewards.toMutableMap() // Convert to MutableMap
+            mutableRewardsMap[rewardBrand] = 1 // Add or update the reward
+        } else {
+            mutableRewardsMap[rewardBrand] = userData!!.rewards[rewardBrand]!!.toInt() + 1
+        }
         val updatePoints = UpdatePoints(updatedEarnedPoints)
+        val updateRewards = UpdateRewards(mutableRewardsMap)
         val callUpdatePoints = apiService.updateEarnedPoints(userId!!, updatePoints)
+        val callUpdateRewards = apiService.updateRewards(userId!!, updateRewards)
+
         callUpdatePoints.enqueue(object : Callback<UserData> {
             override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
                 if(response.isSuccessful) {
@@ -142,6 +152,20 @@ class RewardsFragment : Fragment() {
                 Log.e("NetworkError", "Failed to update earned points: ${t.message}")
             }
         })
+
+        callUpdateRewards.enqueue(object : Callback<UserData> {
+            override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
+                if(response.isSuccessful) {
+                    Toast.makeText(requireContext(), "Reward Added Successfully!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Somethings went wrong! Please try again", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<UserData>, t: Throwable) {
+                Log.e("NetworkError", "Failed to add redeemed reward: ${t.message}")
+            }
+        })
+
     }
 
     companion object {
