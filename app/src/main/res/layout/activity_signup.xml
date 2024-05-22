@@ -135,7 +135,7 @@
         android:textColor="#fff"
         android:textSize="27sp"
         app:backgroundTint="#f2a000"
-        android:background="@drawable/button_register"
+        android:background="@drawable/button_ripple"
         android:layout_marginTop="16dp"/>
 
     <ImageView

@@ -62,8 +62,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.rewardsMenu -> {
                     // Replace the current fragment with the rewards fragment
+                    val rewardsFragment = RewardsFragment.newInstance(userId)
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.homeFragmentContainerView, RewardsFragment())
+                        .replace(R.id.homeFragmentContainerView, rewardsFragment)
                         .commit()
                     true
                 }

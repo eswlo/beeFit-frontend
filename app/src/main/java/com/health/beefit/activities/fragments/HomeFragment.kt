@@ -16,7 +16,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_USERID = "userId"
 //private const val ARG_PARAM2 = "param2"
@@ -27,7 +26,6 @@ private const val ARG_USERID = "userId"
  * create an instance of this fragment.
  */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var userId: String? = null
 //    private var param2: String? = null
     private lateinit var apiService: ApiService
