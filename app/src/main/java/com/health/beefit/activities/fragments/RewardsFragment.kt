@@ -1,15 +1,22 @@
 package com.health.beefit.activities.fragments
 
 import android.animation.ObjectAnimator
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.health.beefit.R
+import com.health.beefit.data.UpdatePoints
 import com.health.beefit.data.UserData
 import com.health.beefit.utils.ApiService
 import com.health.beefit.utils.NetworkService
@@ -31,6 +38,7 @@ class RewardsFragment : Fragment() {
     //    private var param2: String? = null
     private lateinit var apiService: ApiService
     private var userData: UserData? = null
+    private var earnedPoints = 0
 
     // Set the points needed for arc'teryx reward
     private val arcPoints = 200
@@ -65,7 +73,7 @@ class RewardsFragment : Fragment() {
                     userData = response.body()
                     // Display user first name if userData is not null
                     userData?.let {
-                        val earnedPoints = it.earnedPoints!!.toInt()
+                        earnedPoints = it.earnedPoints!!.toInt()
                         var remainingPoints = (arcPoints - earnedPoints)
                         // Set the text of the TextView
                         if (remainingPoints > 0) {
@@ -74,6 +82,15 @@ class RewardsFragment : Fragment() {
                             arcRewardProgressTextView.text = "0 points away!"
                         }
                     }
+
+                    // Get the progress bar
+                    val arcRewardProgressBar = view.findViewById<ProgressBar>(R.id.arcRewardProgressBar)
+
+                    // Set the max of the progress bar using the above points
+                    arcRewardProgressBar.max = arcPoints
+                    // Set up animation
+                    println(earnedPoints.toString())
+                    ObjectAnimator.ofInt(arcRewardProgressBar, "progress", 0, earnedPoints).setDuration(1000).start()
                 }
 
                 override fun onFailure(call: Call<UserData>, t: Throwable) {
@@ -83,16 +100,48 @@ class RewardsFragment : Fragment() {
         }
 
 
-        // Get the progress bar
-        val arcRewardProgressBar = view.findViewById<ProgressBar>(R.id.arcRewardProgressBar)
 
-        // Set the max of the progress bar using the above points
-        arcRewardProgressBar.max = arcPoints
-        // Set up animation
-        ObjectAnimator.ofInt(arcRewardProgressBar, "progress", 0, 50).setDuration(1000).start()
-
-
+        //Set up arc'teryx reward redeem btn listener
+        val arcRewardImageButton = view.findViewById<ImageButton>(R.id.arcRewardImageButton)
+        arcRewardImageButton.setOnClickListener {
+            if (earnedPoints >= arcPoints) {
+                val confirmBox = AlertDialog.Builder(requireContext())
+                    .setTitle("Redeem Points for Reward")
+                    .setMessage("Do you want to redeem your points for an Arc'teryx reward?")
+                    .setPositiveButton("Yes") { dialog, which ->
+                        earnedPoints -= arcPoints
+                        println(earnedPoints)
+                        updateUserEarnedPoints(earnedPoints)
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton("No") { dialog, which ->
+                        Toast.makeText(requireContext(), "No redemption done.", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
+                    .create()
+                confirmBox.show()
+            } else {
+                Toast.makeText(requireContext(), "Sorry, you don't have enough points!", Toast.LENGTH_SHORT).show()
+            }
+        }
         return view
+    }
+
+    private fun updateUserEarnedPoints(updatedEarnedPoints: Int) {
+        val updatePoints = UpdatePoints(updatedEarnedPoints)
+        val callUpdatePoints = apiService.updateEarnedPoints(userId!!, updatePoints)
+        callUpdatePoints.enqueue(object : Callback<UserData> {
+            override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
+                if(response.isSuccessful) {
+                    Toast.makeText(requireContext(), "Points redeemed successfully!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Somethings went wrong! Please try again", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<UserData>, t: Throwable) {
+                Log.e("NetworkError", "Failed to update earned points: ${t.message}")
+            }
+        })
     }
 
     companion object {
