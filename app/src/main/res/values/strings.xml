@@ -2,4 +2,6 @@
     <string name="app_name">beeFit</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="arc_image_button_description">Arcteryx logo button</string>
+
 </resources>
