@@ -4,7 +4,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkService {
-    private const val BASE_URL = "http://192.168.50.101:3000"
+    //change this according to the base URL for your API endpoint
+    private const val BASE_URL = "http://192.168.0.76:3000"
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
