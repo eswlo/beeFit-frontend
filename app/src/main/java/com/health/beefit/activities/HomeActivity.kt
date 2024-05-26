@@ -2,7 +2,6 @@ package com.health.beefit.activities
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -47,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.homeBottomNavigationView)
         val menu = bottomNavigationView.menu
         menu.findItem(R.id.plansMenu).isVisible = true
-        menu.findItem(R.id.rewardsMenu).isVisible = true
+        menu.findItem(R.id.storeMenu).isVisible = true
         menu.findItem(R.id.settingsMenu).isVisible = true
 
         // Set menu item selection listener
@@ -60,11 +59,11 @@ class HomeActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
-                R.id.rewardsMenu -> {
+                R.id.storeMenu -> {
                     // Replace the current fragment with the rewards fragment
-                    val rewardsFragment = RewardsFragment.newInstance(userId)
+                    val storeFragment = StoreFragment.newInstance(userId)
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.homeFragmentContainerView, rewardsFragment)
+                        .replace(R.id.homeFragmentContainerView, storeFragment)
                         .commit()
                     true
                 }

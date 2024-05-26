@@ -10,8 +10,8 @@
         android:title="Plans"
         android:icon="@drawable/ic_baseline_plans_24"/>
     <item
-        android:id="@+id/rewardsMenu"
-        android:title="Rewards"
+        android:id="@+id/storeMenu"
+        android:title="Store"
         android:icon="@drawable/ic_baseline_rewards_24"/>
     <item
         android:id="@+id/settingsMenu"

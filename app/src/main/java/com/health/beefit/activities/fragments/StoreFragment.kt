@@ -1,15 +1,12 @@
 package com.health.beefit.activities.fragments
 
 import android.animation.ObjectAnimator
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.DecelerateInterpolator
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -31,10 +28,10 @@ private const val ARG_USERID = "userId"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [RewardsFragment.newInstance] factory method to
+ * Use the [StoreFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RewardsFragment : Fragment() {
+class StoreFragment : Fragment() {
     private var userId: String? = null
     //    private var param2: String? = null
     private lateinit var apiService: ApiService
@@ -62,7 +59,7 @@ class RewardsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_rewards, container, false)
+        val view = inflater.inflate(R.layout.fragment_store, container, false)
         // Get the text field for displaying how many points needed for arc'teryx reward
         val arcRewardProgressTextView = view.findViewById<TextView>(R.id.arcRewardProgressTextView)
 
@@ -179,7 +176,7 @@ class RewardsFragment : Fragment() {
          */
         @JvmStatic
         fun newInstance(userId: String) =
-            RewardsFragment().apply {
+            StoreFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_USERID, userId)
 //                    putString(ARG_PARAM2, param2)
