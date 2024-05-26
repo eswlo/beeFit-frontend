@@ -7,7 +7,6 @@
     android:background="@drawable/hexa_background"
     tools:context=".activities.fragments.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/settingsFragment"
         android:layout_width="wrap_content"
@@ -31,17 +30,22 @@
         app:rowCount="3"
         app:columnCount="2"
         >
+
+        <!-- (0, 0) card -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/accountClickableCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_row="0"
             app:layout_column="0"
             app:layout_gravity="fill"
             app:layout_rowWeight="1"
-            app:layout_columnWeight="1"
+            app:layout_columnWeight="0"
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,11 +53,9 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_gravity="center_vertical|center_horizontal">
-                <ImageButton
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:contentDescription="@string/account_image_button_description"
-                    android:background="@drawable/button_ripple"
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/account"
                     android:scaleType="fitCenter" />
                 <TextView
@@ -65,6 +67,8 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <!-- (0, 1) card -->
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,10 +76,12 @@
             app:layout_column="1"
             app:layout_gravity="fill"
             app:layout_rowWeight="1"
-            app:layout_columnWeight="1"
+            app:layout_columnWeight=""
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,12 +89,11 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_gravity="center_vertical|center_horizontal">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/account_image_button_description"
-                    android:background="@drawable/button_ripple"
-                    android:src="@drawable/reward" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/reward"
+                    android:scaleType="fitCenter" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,40 +104,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_row="0"
-            app:layout_column="0"
-            app:layout_gravity="fill"
-            app:layout_rowWeight="1"
-            app:layout_columnWeight="1"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_gravity="center_vertical|center_horizontal">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/account_image_button_description"
-                    android:background="@drawable/button_ripple"
-                    android:src="@drawable/account" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Account"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
+        <!-- (1, 0) card -->
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,10 +112,12 @@
             app:layout_column="0"
             app:layout_gravity="fill"
             app:layout_rowWeight="1"
-            app:layout_columnWeight="1"
+            app:layout_columnWeight="0"
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,12 +125,11 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_gravity="center_vertical|center_horizontal">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/account_image_button_description"
-                    android:background="@drawable/button_ripple"
-                    android:src="@drawable/notification" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/notification"
+                    android:scaleType="fitCenter" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -167,6 +140,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- (1, 1) card -->
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -178,6 +152,8 @@
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -185,12 +161,11 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_gravity="center_vertical|center_horizontal">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/account_image_button_description"
-                    android:background="@drawable/button_ripple"
-                    android:src="@drawable/privacy" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/privacy"
+                    android:scaleType="fitCenter" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,6 +176,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- (2, 0) card -->
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -212,6 +188,8 @@
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -219,12 +197,11 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_gravity="center_vertical|center_horizontal">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/account_image_button_description"
-                    android:background="@drawable/button_ripple"
-                    android:src="@drawable/support" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/support"
+                    android:scaleType="fitCenter" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -235,6 +212,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- (2, 1) card -->
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -246,6 +224,8 @@
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -253,12 +233,11 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_gravity="center_vertical|center_horizontal">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/account_image_button_description"
-                    android:background="@drawable/button_ripple"
-                    android:src="@drawable/about" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/about"
+                    android:scaleType="fitCenter" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
