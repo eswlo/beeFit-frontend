@@ -17,7 +17,7 @@ interface ApiService {
 
     // call user sing up
     @POST("/api/users")
-    fun signUp(@Body userData: UserData): Call<RegistrationResponse>
+    fun signUp(@Body userData: UserData): Call<LoginResponse>
 
     // call user login
     @POST("/api/users/login")

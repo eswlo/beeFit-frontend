@@ -124,6 +124,7 @@ class StoreFragment : Fragment() {
         return view
     }
 
+
     private fun updatePointsAndRewards(updatedEarnedPoints: Int, rewardBrand: String) {
         var mutableRewardsMap = mutableMapOf<String, Number>()
         if ((userData!!.rewards.isEmpty()) || !userData!!.rewards.containsKey(rewardBrand)) {

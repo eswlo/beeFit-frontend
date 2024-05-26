@@ -1,5 +1,6 @@
 package com.health.beefit.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -12,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.health.beefit.R
 import com.health.beefit.utils.ApiService
 import com.health.beefit.data.UserData
-import com.health.beefit.data.RegistrationResponse
+import com.health.beefit.data.LoginResponse
 import com.health.beefit.utils.NetworkService
 import retrofit2.Call
 import retrofit2.Callback
@@ -77,16 +78,18 @@ class SignupActivity : AppCompatActivity() {
             val userData = UserData(firstName, lastName, phoneNumber, email, userName, password)
             // Call the signUp method defined in ApiService
             val call = apiService.signUp(userData)
-            call.enqueue(object : Callback<RegistrationResponse> {
-                override fun onResponse(call: Call<RegistrationResponse>, response: Response<RegistrationResponse>) {
+            call.enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     if (response.isSuccessful) {
                         val registrationResponse = response.body()
+                        val token = registrationResponse!!.token
                         // Handle successful response
                         Toast.makeText(this@SignupActivity, "You're all set!", Toast.LENGTH_SHORT).show()
 
-//                        // Navigate to the user page
-//                        val intent = Intent(this@SignupActivity, HomePageActivity::class.java)
-//                        startActivity(intent)
+                        // Navigate to the user page
+                        val intent = Intent(this@SignupActivity, HomeActivity::class.java)
+                        intent.putExtra("token", token)
+                        startActivity(intent)
 
                         // Finish the current activity (optional)
                         finish()
@@ -97,7 +100,7 @@ class SignupActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<RegistrationResponse>, t: Throwable) {
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     // Handle failure
                     Log.e("SignupActivity", "Failed to send signup request", t)
                     Toast.makeText(this@SignupActivity, "Failed to send signup request", Toast.LENGTH_SHORT).show()

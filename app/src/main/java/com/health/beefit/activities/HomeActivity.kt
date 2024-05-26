@@ -3,6 +3,7 @@ package com.health.beefit.activities
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -94,4 +95,23 @@ class HomeActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
+    override fun onBackPressed() {
+        // Check if the back stack has fragments
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            // If there are fragments in the back stack, pop the back stack
+            supportFragmentManager.popBackStack()
+        } else {
+            // If there are no fragments in the back stack, ask the user if they want to exit
+            AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit beeFit?")
+                .setPositiveButton("Yes") { _, _ ->
+                    finishAffinity() // Exit the app COMPLETELY
+                }
+                .setNegativeButton("No", null) // Do nothing if "No" is clicked
+                .show()
+        }
+    }
+
+
 }
