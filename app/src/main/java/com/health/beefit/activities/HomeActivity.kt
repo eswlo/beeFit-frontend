@@ -107,6 +107,7 @@ class HomeActivity : AppCompatActivity() {
                 .setMessage("Are you sure you want to exit beeFit?")
                 .setPositiveButton("Yes") { _, _ ->
                     finishAffinity() // Exit the app COMPLETELY
+                    super.onBackPressed()
                 }
                 .setNegativeButton("No", null) // Do nothing if "No" is clicked
                 .show()

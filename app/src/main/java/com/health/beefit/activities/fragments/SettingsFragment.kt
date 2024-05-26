@@ -29,14 +29,14 @@ private const val ARG_USERID = "userId"
  * create an instance of this fragment.
  */
 class SettingsFragment : Fragment() {
-    private var userId: String? = null
+    private var userId: String = ""
     //    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Retrieve userId from passed in argument
         arguments?.let {
-            userId = it.getString(ARG_USERID)
+            userId = it.getString(ARG_USERID) ?: ""
 //            param2 = it.getString(ARG_PARAM2)
         }
     }
@@ -56,7 +56,7 @@ class SettingsFragment : Fragment() {
         val aboutClickableCardView = view.findViewById<CardView>(R.id.aboutClickableCardView)
 
         accountClickableCardView.setOnClickListener {
-            val fragment = SettingsAccountFragment()
+            val fragment = SettingsAccountFragment.newInstance(userId)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.settingsFragmentContainer, fragment)
                 .addToBackStack(null)
