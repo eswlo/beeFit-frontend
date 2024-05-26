@@ -69,8 +69,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.settingsMenu -> {
                     // Replace the current fragment with the settings fragment
+                    val settingsFragment = SettingsFragment.newInstance(userId)
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.homeFragmentContainerView, SettingsFragment())
+                        .replace(R.id.homeFragmentContainerView, settingsFragment)
                         .commit()
                     true
                 }

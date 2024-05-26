@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/hexa_background"
-    tools:context=".activities.fragments.SettingsFragment">
+    tools:context=".activities.fragments.SettingsFragment"
+    android:id="@+id/settingsFragmentContainer">
 
     <TextView
         android:id="@+id/settingsFragment"

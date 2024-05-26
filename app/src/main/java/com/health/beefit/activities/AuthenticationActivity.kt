@@ -29,6 +29,7 @@ class AuthenticationActivity : AppCompatActivity() {
             val intent = Intent(this@AuthenticationActivity, SignupActivity::class.java)
 //            intent.putExtra("SERVER_URL", serverUrl)
             startActivity(intent)
+            finish()
         }
 
         val loginButton: Button = findViewById(R.id.loginButton)
@@ -37,6 +38,7 @@ class AuthenticationActivity : AppCompatActivity() {
             val intent = Intent(this@AuthenticationActivity, LoginActivity::class.java)
 //            intent.putExtra("SERVER_URL", serverUrl)
             startActivity(intent)
+            finish()
         }
 
     }
