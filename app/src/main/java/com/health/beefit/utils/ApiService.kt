@@ -3,6 +3,7 @@ package com.health.beefit.utils
 import com.health.beefit.data.LoginRequest
 import com.health.beefit.data.LoginResponse
 import com.health.beefit.data.RegistrationResponse
+import com.health.beefit.data.UpdateAccountInfo
 import com.health.beefit.data.UpdatePoints
 import com.health.beefit.data.UpdateRewards
 import com.health.beefit.data.UserData
@@ -34,4 +35,8 @@ interface ApiService {
     // Update rewards by ID
     @PUT("/api/users/{id}")
     fun updateRewards(@Path("id") userId: String, @Body updateRewards: UpdateRewards): Call<UserData>
+
+    // Update Account info (first name, last name, phone) by ID
+    @PUT("/api/users/{id}")
+    fun updateAccountInfo(@Path("id") userId: String, @Body updateAccountInfo: UpdateAccountInfo): Call<UserData>
 }

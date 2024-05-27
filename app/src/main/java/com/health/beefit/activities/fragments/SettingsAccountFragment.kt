@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.health.beefit.R
 import com.health.beefit.data.UserData
 import com.health.beefit.utils.ApiService
@@ -77,10 +79,16 @@ class SettingsAccountFragment : Fragment() {
                 }
             })
         }
-
-
-
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val updateInfoBtn = view.findViewById<Button>(R.id.updateAccountInfoButton)
+        updateInfoBtn.setOnClickListener {
+            val editAccountInfoPopUp = EditAccountInfoPopUp.newInstance(userId!!, userData!!.firstName, userData!!.lastName, userData!!.phoneNumber)
+            editAccountInfoPopUp.show((activity as AppCompatActivity).supportFragmentManager, "editAccountInfoPopUp")
+        }
     }
 
     companion object {

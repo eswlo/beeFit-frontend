@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.fragments.EditAccountInfoPopUp">
+
+    <TextView
+        android:id="@+id/instructionEditInfoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fill in the fields that you wish to update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="50dp"
+        android:textSize="10sp"
+        android:textStyle="bold">
+    </TextView>
+
+    <EditText
+        android:id="@+id/editFirstName"
+        android:hint="FirstName"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@id/instructionEditInfoTextView"
+        app:layout_constraintEnd_toEndOf="@id/instructionEditInfoTextView"
+        app:layout_constraintTop_toBottomOf="@id/instructionEditInfoTextView">
+    </EditText>
+
+    <EditText
+        android:id="@+id/editLastName"
+        android:hint="LastName"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@id/instructionEditInfoTextView"
+        app:layout_constraintEnd_toEndOf="@id/instructionEditInfoTextView"        app:layout_constraintTop_toBottomOf="@id/editFirstName">
+    </EditText>
+
+    <EditText
+        android:id="@+id/editPhoneNumber"
+        android:hint="PhoneNumber"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@id/instructionEditInfoTextView"
+        app:layout_constraintEnd_toEndOf="@id/instructionEditInfoTextView"
+        app:layout_constraintTop_toBottomOf="@id/editLastName">
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@id/instructionEditInfoTextView"
+        app:layout_constraintEnd_toEndOf="@id/instructionEditInfoTextView"
+        app:layout_constraintTop_toBottomOf="@id/editPhoneNumber"
+        android:layout_marginTop="15dp"
+        >
+
+        <Button
+            android:id="@+id/confirmEditInfoBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="8sp"
+            android:text="Confirm" />
+
+        <Button
+            android:id="@+id/cancelEditInfoBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_weight="1"
+            android:textSize="8sp"
+            android:text="Cancel" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
