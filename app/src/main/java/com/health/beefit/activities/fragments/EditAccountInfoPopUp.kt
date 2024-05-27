@@ -67,10 +67,15 @@ class EditAccountInfoPopUp : DialogFragment() {
         val editLastName = view.findViewById<EditText>(R.id.editLastName)
         val editPhoneNumber = view.findViewById<EditText>(R.id.editPhoneNumber)
         val confirmEditInfoBtn = view.findViewById<Button>(R.id.confirmEditInfoBtn)
+        val cancelEditInfoBtn = view.findViewById<Button>(R.id.cancelEditInfoBtn)
 
         editFirstName.hint = userFN
         editLastName.hint = userLN
         editPhoneNumber.hint = userPN
+
+        cancelEditInfoBtn.setOnClickListener {
+            dismiss()
+        }
 
         confirmEditInfoBtn.setOnClickListener {
             var updatedFN = editFirstName.text.toString()
