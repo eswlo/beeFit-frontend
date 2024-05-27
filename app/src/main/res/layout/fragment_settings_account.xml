@@ -50,7 +50,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="First Name: TEST" />
+                android:text="First Name: " />
 
             <TextView
                 android:id="@+id/accountLNTextView"
@@ -62,7 +62,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Last Name: TEST" />
+                android:text="Last Name: " />
 
             <TextView
                 android:id="@+id/accountUNTextView"
@@ -74,7 +74,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="User Name: TEST" />
+                android:text="User Name: " />
 
             <TextView
                 android:id="@+id/accountEMTextView"
@@ -86,7 +86,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Email: TEST" />
+                android:text="Email: " />
 
             <TextView
                 android:id="@+id/accountPNTextView"
@@ -98,7 +98,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Phone Number: TEST" />
+                android:text="Phone Number: " />
 
             <TextView
                 android:id="@+id/accountEPTextView"
@@ -110,7 +110,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Earned Points: TEST" />
+                android:text="Earned Points: " />
 
             <!-- UPDATE Button -->
             <Button

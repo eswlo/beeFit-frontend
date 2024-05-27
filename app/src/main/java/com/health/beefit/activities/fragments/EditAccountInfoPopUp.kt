@@ -93,7 +93,6 @@ class EditAccountInfoPopUp : DialogFragment() {
                 updatedPN = userPN!!
             }
 
-
             val call = apiService.getOneUserById(userID!!)
             val updatedAccountInfo = UpdateAccountInfo(updatedFN, updatedLN, updatedPN)
             apiService.updateAccountInfo(userID!!, updatedAccountInfo).enqueue(object : Callback<UserData> {
