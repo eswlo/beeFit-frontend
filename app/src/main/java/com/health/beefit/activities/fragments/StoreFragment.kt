@@ -48,6 +48,7 @@ class StoreFragment : Fragment() {
     // for adapter & recyclerview
     private lateinit var recyclerView: RecyclerView
     private lateinit var dataList: ArrayList<StoreItem>
+    private lateinit var brandList:Array<String>
     private lateinit var imageList:Array<Int>
     private lateinit var descriptionList:Array<String>
     private lateinit var maxPointsList:Array<Int>
@@ -63,6 +64,12 @@ class StoreFragment : Fragment() {
         }
         // Initialize ApiService
         apiService = NetworkService.apiService
+
+        brandList = arrayOf(
+            "arc'teryx",
+            "aritzia",
+            "patagonia",
+            "lululemon")
 
         imageList = arrayOf(
             R.drawable.arcteryx,
@@ -107,7 +114,7 @@ class StoreFragment : Fragment() {
                     // Display user first name if userData is not null
                     userData?.let {
                         earnedPoints = it.earnedPoints!!.toInt()
-                        getData(earnedPoints)
+                        getData(earnedPoints, userData!!, userId!!)
 //                        var remainingPoints = (arcPoints - earnedPoints)
 //                        // Set the text of the TextView
 //                        if (remainingPoints > 0) {
@@ -159,12 +166,12 @@ class StoreFragment : Fragment() {
         return view
     }
 
-    private fun getData(earnedPoints: Int){
+    private fun getData(earnedPoints: Int, userData: UserData, userId: String){
         for (i in imageList.indices) {
-            val storeItem = StoreItem(imageList[i], descriptionList[i], maxPointsList[i])
+            val storeItem = StoreItem(brandList[i], imageList[i], descriptionList[i], maxPointsList[i])
             dataList.add(storeItem)
         }
-        recyclerView.adapter = StoreItemAdapter(dataList, earnedPoints)
+        recyclerView.adapter = StoreItemAdapter(requireContext(), dataList, earnedPoints, apiService, userData, userId)
     }
 
 //    private fun updatePointsAndRewards(updatedEarnedPoints: Int, rewardBrand: String) {
