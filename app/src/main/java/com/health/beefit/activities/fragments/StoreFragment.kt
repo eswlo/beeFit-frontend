@@ -66,7 +66,7 @@ class StoreFragment : Fragment() {
         apiService = NetworkService.apiService
 
         brandList = arrayOf(
-            "arc'teryx",
+            "arcteryx",
             "aritzia",
             "patagonia",
             "lululemon")

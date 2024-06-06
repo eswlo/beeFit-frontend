@@ -63,7 +63,7 @@ class SettingsFragment : Fragment() {
                 .commit()
         }
         rewardsClickableCardView.setOnClickListener {
-            val fragment = SettingsRewardsFragment()
+            val fragment = SettingsRewardsFragment.newInstance(userId)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.settingsFragmentContainer, fragment)
                 .addToBackStack(null)
