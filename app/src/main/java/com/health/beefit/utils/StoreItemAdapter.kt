@@ -44,6 +44,7 @@ class StoreItemAdapter (private val context: Context,
         holder.rvDescription.text = currentItem.itemDescription
 
         // Set the max of the progress bar using the above points
+        holder.rvMaxPoints.text = currentItem.itemMaxPoints.toString()
         holder.rvRewardProgressBar.max = currentItem.itemMaxPoints
         // Set up animation
         println(earnedPoints.toString())
@@ -125,6 +126,7 @@ class StoreItemAdapter (private val context: Context,
     class ViewHolderClass (itemView: View): RecyclerView.ViewHolder(itemView) {
         val rvImage:ImageView = itemView.findViewById(R.id.rewardImageView)
         val rvDescription:TextView = itemView.findViewById(R.id.rewardText)
+        val rvMaxPoints:TextView = itemView.findViewById(R.id.rewardProgressMaxPoints)
         val rvRewardProgressBar:ProgressBar = itemView.findViewById(R.id.rewardProgressBar)
         val rvRewardProgressText:TextView = itemView.findViewById(R.id.rewardProgressTextView)
     }
