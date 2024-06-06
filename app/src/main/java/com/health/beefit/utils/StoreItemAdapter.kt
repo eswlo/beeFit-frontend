@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class StoreItemAdapter (private val context: Context,
                         private val dataList: ArrayList<StoreItem>,
-                        private val earnedPoints: Int,
+                        private var earnedPoints: Int,
                         private val apiService: ApiService,
                         private var userData: UserData,
                         private val userId: String): RecyclerView.Adapter<StoreItemAdapter.ViewHolderClass>(){
@@ -67,8 +67,8 @@ class StoreItemAdapter (private val context: Context,
                     .setTitle("Redeem Points for Reward")
                     .setMessage("Do you want to redeem your points for an ${currentItem.itemBrand} reward?")
                     .setPositiveButton("Yes") { dialog, which ->
-                        val updatedEP = earnedPoints - currentItem.itemMaxPoints
-                        updatePointsAndRewards(updatedEP, currentItem.itemBrand)
+                        earnedPoints -= currentItem.itemMaxPoints
+                        updatePointsAndRewards(holder, earnedPoints, currentItem.itemBrand)
                         dialog.dismiss()
                     }
                     .setNegativeButton("No") { dialog, which ->
@@ -83,7 +83,7 @@ class StoreItemAdapter (private val context: Context,
         }
     }
 
-    private fun updatePointsAndRewards(updatedEarnedPoints: Int, rewardBrand: String) {
+    private fun updatePointsAndRewards(holder: ViewHolderClass, updatedEarnedPoints: Int, rewardBrand: String) {
         var mutableRewardsMap = mutableMapOf<String, Number>()
         if ((userData!!.rewards.isEmpty()) || !userData!!.rewards.containsKey(rewardBrand)) {
             mutableRewardsMap = userData!!.rewards.toMutableMap() // Convert to MutableMap
@@ -112,6 +112,8 @@ class StoreItemAdapter (private val context: Context,
         callUpdateRewards.enqueue(object : Callback<UserData> {
             override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
                 if(response.isSuccessful) {
+                    println(earnedPoints.toString())
+                    ObjectAnimator.ofInt(holder.rvRewardProgressBar, "progress", 0, earnedPoints).setDuration(1000).start()
                     Toast.makeText(context, "Reward Added Successfully!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Somethings went wrong! Please try again", Toast.LENGTH_SHORT).show()
