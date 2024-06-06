@@ -71,7 +71,7 @@ class StoreItemAdapter (private val context: Context,
                     .setPositiveButton("Yes") { dialog, which ->
                         earnedPoints -= currentItem.itemMaxPoints
                         println(currentItem.itemBrand)
-                        updatePointsAndRewards(holder, earnedPoints, currentItem.itemBrand)
+                        updatePointsAndRewards(holder, earnedPoints, currentItem.itemBrand, currentItem.itemDescription)
                         dialog.dismiss()
                     }
                     .setNegativeButton("No") { dialog, which ->
@@ -86,15 +86,17 @@ class StoreItemAdapter (private val context: Context,
         }
     }
 
-    private fun updatePointsAndRewards(holder: ViewHolderClass, updatedEarnedPoints: Int, rewardBrand: String) {
+    private fun updatePointsAndRewards(holder: ViewHolderClass, updatedEarnedPoints: Int, rewardBrand: String, rewardDescription: String) {
         apiService.getOneUserById(userId).enqueue(object : Callback<UserData> {
             override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
                 userData = response.body()
                 var mutableRewardsMap = userData!!.rewards.toMutableMap() // Convert to MutableMap
                 if ((mutableRewardsMap.isEmpty()) || !mutableRewardsMap.containsKey(rewardBrand)) {
-                    mutableRewardsMap[rewardBrand] = 1 // Add or update the reward
+                    mutableRewardsMap[rewardBrand] = StringIntPair(rewardDescription, 1) // Add or update the reward
                 } else {
-                    mutableRewardsMap[rewardBrand] = mutableRewardsMap[rewardBrand]!!.toInt() + 1
+                    val mapVal = (mutableRewardsMap[rewardBrand])
+                    val incrementedValue = mapVal?.count?.plus(1) ?: 0
+                    mutableRewardsMap[rewardBrand] = StringIntPair(rewardDescription, incrementedValue)
                 }
                 val updatePoints = UpdatePoints(updatedEarnedPoints)
                 val updateRewards = UpdateRewards(mutableRewardsMap)

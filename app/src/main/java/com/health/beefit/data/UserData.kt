@@ -10,5 +10,5 @@ package com.health.beefit.data
         val userName: String,
         val password: String,
         val earnedPoints: Number = 0,
-        val rewards: MutableMap<String, Number> = mutableMapOf() // Initialize an empty map for rewards
+        val rewards: MutableMap<String, StringIntPair> = mutableMapOf() // Initialize an empty map for rewards
     )
