@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.health.beefit.R
+import com.health.beefit.activities.fragments.StoreFragment
 import com.health.beefit.data.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,10 +24,11 @@ class StoreItemAdapter (private val context: Context,
                         private val dataList: ArrayList<StoreItem>,
                         private var earnedPoints: Int,
                         private val apiService: ApiService,
-                        private var userData: UserData,
                         private val userId: String): RecyclerView.Adapter<StoreItemAdapter.ViewHolderClass>(){
 
     private var onItemClick: ((StoreItem) -> Unit)? = null
+    private var userData: UserData? = null
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
@@ -68,6 +70,7 @@ class StoreItemAdapter (private val context: Context,
                     .setMessage("Do you want to redeem your points for an ${currentItem.itemBrand} reward?")
                     .setPositiveButton("Yes") { dialog, which ->
                         earnedPoints -= currentItem.itemMaxPoints
+                        println(currentItem.itemBrand)
                         updatePointsAndRewards(holder, earnedPoints, currentItem.itemBrand)
                         dialog.dismiss()
                     }
@@ -84,43 +87,49 @@ class StoreItemAdapter (private val context: Context,
     }
 
     private fun updatePointsAndRewards(holder: ViewHolderClass, updatedEarnedPoints: Int, rewardBrand: String) {
-        var mutableRewardsMap = mutableMapOf<String, Number>()
-        if ((userData!!.rewards.isEmpty()) || !userData!!.rewards.containsKey(rewardBrand)) {
-            mutableRewardsMap = userData!!.rewards.toMutableMap() // Convert to MutableMap
-            mutableRewardsMap[rewardBrand] = 1 // Add or update the reward
-        } else {
-            mutableRewardsMap[rewardBrand] = userData!!.rewards[rewardBrand]!!.toInt() + 1
-        }
-        val updatePoints = UpdatePoints(updatedEarnedPoints)
-        val updateRewards = UpdateRewards(mutableRewardsMap)
-        val callUpdatePoints = apiService.updateEarnedPoints(userId!!, updatePoints)
-        val callUpdateRewards = apiService.updateRewards(userId!!, updateRewards)
-
-        callUpdatePoints.enqueue(object : Callback<UserData> {
+        apiService.getOneUserById(userId).enqueue(object : Callback<UserData> {
             override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
-                if(response.isSuccessful) {
-                    Toast.makeText(context, "Points redeemed successfully!", Toast.LENGTH_SHORT).show()
+                userData = response.body()
+                var mutableRewardsMap = userData!!.rewards.toMutableMap() // Convert to MutableMap
+                if ((mutableRewardsMap.isEmpty()) || !mutableRewardsMap.containsKey(rewardBrand)) {
+                    mutableRewardsMap[rewardBrand] = 1 // Add or update the reward
                 } else {
-                    Toast.makeText(context, "Somethings went wrong! Please try again", Toast.LENGTH_SHORT).show()
+                    mutableRewardsMap[rewardBrand] = mutableRewardsMap[rewardBrand]!!.toInt() + 1
                 }
+                val updatePoints = UpdatePoints(updatedEarnedPoints)
+                val updateRewards = UpdateRewards(mutableRewardsMap)
+                val callUpdatePoints = apiService.updateEarnedPoints(userId!!, updatePoints)
+                val callUpdateRewards = apiService.updateRewards(userId!!, updateRewards)
+
+                callUpdatePoints.enqueue(object : Callback<UserData> {
+                    override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
+                        if(response.isSuccessful) {
+                            Toast.makeText(context, "Points redeemed successfully!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context, "Somethings went wrong! Please try again", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    override fun onFailure(call: Call<UserData>, t: Throwable) {
+                        Log.e("NetworkError", "Failed to update earned points: ${t.message}")
+                    }
+                })
+
+                callUpdateRewards.enqueue(object : Callback<UserData> {
+                    override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
+                        if(response.isSuccessful) {
+                            ObjectAnimator.ofInt(holder.rvRewardProgressBar, "progress", 0, earnedPoints).setDuration(1000).start()
+                            Toast.makeText(context, "Reward Added Successfully!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context, "Somethings went wrong! Please try again", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    override fun onFailure(call: Call<UserData>, t: Throwable) {
+                        Log.e("NetworkError", "Failed to add redeemed reward: ${t.message}")
+                    }
+                })
             }
             override fun onFailure(call: Call<UserData>, t: Throwable) {
-                Log.e("NetworkError", "Failed to update earned points: ${t.message}")
-            }
-        })
-
-        callUpdateRewards.enqueue(object : Callback<UserData> {
-            override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
-                if(response.isSuccessful) {
-                    println(earnedPoints.toString())
-                    ObjectAnimator.ofInt(holder.rvRewardProgressBar, "progress", 0, earnedPoints).setDuration(1000).start()
-                    Toast.makeText(context, "Reward Added Successfully!", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "Somethings went wrong! Please try again", Toast.LENGTH_SHORT).show()
-                }
-            }
-            override fun onFailure(call: Call<UserData>, t: Throwable) {
-                Log.e("NetworkError", "Failed to add redeemed reward: ${t.message}")
+                println("can't get userData")
             }
         })
     }

@@ -171,7 +171,7 @@ class StoreFragment : Fragment() {
             val storeItem = StoreItem(brandList[i], imageList[i], descriptionList[i], maxPointsList[i])
             dataList.add(storeItem)
         }
-        recyclerView.adapter = StoreItemAdapter(requireContext(), dataList, earnedPoints, apiService, userData, userId)
+        recyclerView.adapter = StoreItemAdapter(requireContext(), dataList, earnedPoints, apiService, userId)
     }
 
 //    private fun updatePointsAndRewards(updatedEarnedPoints: Int, rewardBrand: String) {
