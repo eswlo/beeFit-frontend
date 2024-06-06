@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    android:elevation="8dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/coupon_roundcorner">
+
+        <ImageView
+            android:id="@+id/rewardImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/arcteryx"
+            android:layout_marginStart="5dp"
+            android:padding="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/rewardTermTable"
+            android:layout_width="190dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toEndOf="@id/rewardImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rewardText"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:text="Get 10% off your next purchase of $100 or more*"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingTop="3dp"/>
+
+            <TextView
+                android:id="@+id/rewardTermTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="*Terms and conditions apply"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rewardProgressBarTable"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            app:layout_constraintStart_toEndOf="@id/rewardTermTable"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/rewardProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateOnly="false"
+                android:progress="0"
+                android:progressDrawable="@drawable/circle_determinate_progress"
+                android:paddingLeft="10dp"
+                android:paddingTop="3dp"/>
+
+            <TextView
+                android:id="@+id/rewardProgressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="11sp"
+                android:paddingLeft="0dp"
+                android:text="250 points away!" />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>
