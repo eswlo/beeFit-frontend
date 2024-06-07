@@ -70,7 +70,6 @@ class StoreItemAdapter (private val context: Context,
                     .setMessage("Do you want to redeem your points for an ${currentItem.itemBrand} reward?")
                     .setPositiveButton("Yes") { dialog, which ->
                         earnedPoints -= currentItem.itemMaxPoints
-                        println(currentItem.itemBrand)
                         updatePointsAndRewards(holder, earnedPoints, currentItem.itemBrand, currentItem.itemDescription)
                         dialog.dismiss()
                     }

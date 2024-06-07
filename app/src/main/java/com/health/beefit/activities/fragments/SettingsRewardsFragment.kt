@@ -72,7 +72,7 @@ class SettingsRewardsFragment : Fragment() {
                 override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
                     userData = response.body()
                     populateLists(userData!!)
-                    getData()
+                    getData(userId!!)
                 }
                 override fun onFailure(call: Call<UserData>, t: Throwable) {
                     // Handle network error
@@ -95,12 +95,12 @@ class SettingsRewardsFragment : Fragment() {
         }
     }
 
-    private fun getData() {
+    private fun getData(userId: String) {
         for (i in imageList.indices) {
             val settingsRewardsItem = SettingsRewardsItem(brandList[i], imageList[i], descriptionList[i], countList[i])
             dataList.add(settingsRewardsItem)
         }
-        recyclerView.adapter = SettingsRewardsItemAdapter(dataList)
+        recyclerView.adapter = SettingsRewardsItemAdapter(requireContext(), dataList, apiService, userId)
     }
 
 
