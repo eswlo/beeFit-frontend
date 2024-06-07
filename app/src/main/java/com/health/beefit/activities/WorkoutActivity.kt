@@ -34,13 +34,13 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
     private var sensorStarted = false
     private var previousSides: Float = 0.0f // Variable to store the previous value of sides
     private var previousUpDown: Float = 0.0f // Variable to store the previous value of upDown
-    private val epsilon: Float = 0.05f // Small threshold to account for very minor changes
+    private val epsilon: Float = 0.03f // Small threshold to account for very minor changes; can be used for intensity setting
 
     //var for counter
     private var isRunning = false
     private var counterSeconds = 0
     private var counterPoints = 0
-    private var statusText = "Not Started Yet"
+    private var earnedPointText = "0"
     private val handler = Handler(Looper.getMainLooper())
     private val runnable = object : Runnable {
         override fun run() {
@@ -164,16 +164,18 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
             // Determine the status based on sensor values
             if (sidesDifference > epsilon || upDownDifference > epsilon) {
                 startCounter()
-                statusText = "Moving"
+                earnedPointText = counterSeconds.toString()
+//                earnedPointText = "Moving"
             } else {
                 pauseCounter()
-                statusText = "Stationary"
+                earnedPointText = counterSeconds.toString()
+//                earnedPointText = "Stationary"
             }
 
             // Update the status text view
-            findViewById<TextView>(R.id.statusText).text = statusText
+            findViewById<TextView>(R.id.earnedPointText).text = earnedPointText
 
-            Log.d("STATUS_TEXT", "Status Text: $statusText")
+            Log.d("STATUS_TEXT", "Status Text: $earnedPointText")
             Log.d("COUNTER_SECONDS", "Counter Seconds: $counterSeconds")
 
 //            Log.d("SENSOR", "Acceleration: sides=$sides, upDown=$upDown")
