@@ -67,7 +67,7 @@ class StoreItemAdapter (private val context: Context,
             if (earnedPoints >= currentItem.itemMaxPoints) {
                 val confirmBox = AlertDialog.Builder(context)
                     .setTitle("Redeem Points for Reward")
-                    .setMessage("Do you want to redeem your points for an ${currentItem.itemBrand} reward?")
+                    .setMessage("Do you want to redeem your points for an ${currentItem.itemBrand} reward? You currently have ${earnedPoints.toString()} points.")
                     .setPositiveButton("Yes") { dialog, which ->
                         earnedPoints -= currentItem.itemMaxPoints
                         updatePointsAndRewards(holder, earnedPoints, currentItem.itemBrand, currentItem.itemDescription)
