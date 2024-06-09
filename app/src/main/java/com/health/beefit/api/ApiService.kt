@@ -1,4 +1,4 @@
-package com.health.beefit.utils
+package com.health.beefit.api
 
 import com.health.beefit.data.LoginRequest
 import com.health.beefit.data.LoginResponse

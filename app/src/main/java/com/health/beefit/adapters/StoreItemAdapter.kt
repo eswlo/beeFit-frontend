@@ -1,4 +1,4 @@
-package com.health.beefit.utils
+package com.health.beefit.adapters
 
 import android.animation.ObjectAnimator
 import android.content.Context
@@ -11,11 +11,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.health.beefit.R
-import com.health.beefit.activities.fragments.StoreFragment
 import com.health.beefit.data.*
+import com.health.beefit.api.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -18,8 +18,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.health.beefit.R
 import com.health.beefit.data.*
-import com.health.beefit.utils.ApiService
-import com.health.beefit.utils.NetworkService
+import com.health.beefit.api.ApiService
+import com.health.beefit.api.NetworkService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

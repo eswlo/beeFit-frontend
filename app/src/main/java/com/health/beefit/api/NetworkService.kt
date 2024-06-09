@@ -1,4 +1,4 @@
-package com.health.beefit.utils
+package com.health.beefit.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

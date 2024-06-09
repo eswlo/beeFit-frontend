@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.health.beefit.R
 import com.health.beefit.data.UserData
-import com.health.beefit.utils.ApiService
-import com.health.beefit.utils.NetworkService
+import com.health.beefit.api.ApiService
+import com.health.beefit.api.NetworkService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

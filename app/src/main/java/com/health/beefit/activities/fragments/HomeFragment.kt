@@ -10,8 +10,9 @@ import android.widget.Button
 import android.widget.TextView
 import com.health.beefit.R
 import com.health.beefit.activities.WorkoutActivity
+import com.health.beefit.api.ApiService
+import com.health.beefit.api.NetworkService
 import com.health.beefit.data.UserData
-import com.health.beefit.utils.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

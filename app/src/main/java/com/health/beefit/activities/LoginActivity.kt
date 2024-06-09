@@ -11,11 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.health.beefit.R
+import com.health.beefit.api.ApiService
+import com.health.beefit.api.NetworkService
 import com.health.beefit.data.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.health.beefit.utils.*
 
 
 class LoginActivity : AppCompatActivity() {

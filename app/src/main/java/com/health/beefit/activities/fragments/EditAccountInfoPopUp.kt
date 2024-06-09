@@ -2,20 +2,18 @@ package com.health.beefit.activities.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.health.beefit.R
 import com.health.beefit.data.UpdateAccountInfo
 import com.health.beefit.data.UserData
-import com.health.beefit.utils.ApiService
-import com.health.beefit.utils.NetworkService
+import com.health.beefit.api.ApiService
+import com.health.beefit.api.NetworkService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

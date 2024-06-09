@@ -1,22 +1,12 @@
 package com.health.beefit.activities.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.health.beefit.R
-import com.health.beefit.activities.WorkoutActivity
-import com.health.beefit.data.UserData
-import com.health.beefit.utils.ApiService
-import com.health.beefit.utils.NetworkService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
