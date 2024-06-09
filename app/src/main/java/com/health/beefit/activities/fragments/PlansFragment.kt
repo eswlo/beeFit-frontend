@@ -1,6 +1,7 @@
 package com.health.beefit.activities.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +10,19 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.ai.client.generativeai.GenerativeModel
+import com.google.ai.client.generativeai.type.generationConfig
 import com.health.beefit.BuildConfig
 import com.health.beefit.R
 import com.health.beefit.adapters.PlansMessageAdapter
 import com.health.beefit.data.Message
 import com.health.beefit.data.StoreItem
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,8 +80,37 @@ class PlansFragment : Fragment() {
             messageEditText.setText("")
             instructionTextView.visibility = View.GONE
 
+            val generativeModel = GenerativeModel(
+                // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
+                modelName = "gemini-1.5-flash",
+                // Access your API key as a Build Configuration variable (see "Set up your API key" above)
+                apiKey = API_KEY,
+                generationConfig = generationConfig {
+                    temperature = 0f
+                    topK = 32
+                    topP = 1f
+                    maxOutputTokens = 8192
+                }
+            )
 
+            lifecycleScope.launch {
+                try {
+                    // Add "Typing..." message before making the API call
+                    addToMsgList("Typing...", Message.SENT_BY_BOT)
 
+                    // Make the API call
+                    val response = generativeModel.generateContent(question)
+
+                    // Replace "Typing..." message with the actual response
+                    response.text?.let { it1 ->
+                        messageList.removeAt(messageList.size - 1)
+                        addToMsgList(it1, Message.SENT_BY_BOT)
+                    }
+                } catch (e: Exception) {
+                    Log.e("API RESPONSE ERROR", "An error occurred: ${e.message}", e)
+                    Toast.makeText(requireContext(), "Something is wrong! Please try again!", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         recyclerView.adapter = messageAdapter
