@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.health.beefit.BuildConfig
 import com.health.beefit.R
 import com.health.beefit.adapters.PlansMessageAdapter
 import com.health.beefit.data.Message
@@ -39,7 +40,7 @@ class PlansFragment : Fragment() {
     private lateinit var messageList: ArrayList<Message>
     private lateinit var messageAdapter: PlansMessageAdapter
 
-
+    val API_KEY = BuildConfig.API_KEY
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -87,6 +88,11 @@ class PlansFragment : Fragment() {
             messageAdapter.notifyDataSetChanged()
             recyclerView.smoothScrollToPosition(messageAdapter.itemCount)
         }
+    }
+
+    private fun callAPI(question: String) {
+        //using okhttp
+
     }
 
     companion object {
