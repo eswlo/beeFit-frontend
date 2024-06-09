@@ -108,8 +108,8 @@ class PlansFragment : Fragment() {
                     }
                 } catch (e: Exception) {
                     Log.e("API RESPONSE ERROR", "An error occurred: ${e.message}", e)
-                    Toast.makeText(requireContext(), "Something is wrong! Please try again!", Toast.LENGTH_SHORT).show()
-                }
+                    messageList.removeAt(messageList.size - 1)
+                    addToMsgList("Something went wrong. Please enter your question again!", Message.SENT_BY_BOT)                }
             }
         }
 

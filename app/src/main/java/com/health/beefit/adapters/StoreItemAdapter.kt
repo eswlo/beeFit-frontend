@@ -48,7 +48,7 @@ class StoreItemAdapter (private val context: Context,
         holder.rvMaxPoints.text = currentItem.itemMaxPoints.toString()
         holder.rvRewardProgressBar.max = currentItem.itemMaxPoints
         // Set up animation
-        println(earnedPoints.toString())
+//        println(earnedPoints.toString())
         ObjectAnimator.ofInt(holder.rvRewardProgressBar, "progress", 0, earnedPoints).setDuration(1000).start()
 
         val remainingPoints = (currentItem.itemMaxPoints - earnedPoints)
