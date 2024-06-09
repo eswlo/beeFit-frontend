@@ -4,6 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="arc_image_button_description">Arcteryx logo button</string>
     <string name="account_image_button_description">Account setting button</string>
+    <string name="send_chat_button_description">Send Button in Plans Chat</string>
 
 
 </resources>
