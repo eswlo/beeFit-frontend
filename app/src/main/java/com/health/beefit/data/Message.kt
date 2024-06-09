@@ -1,6 +1,8 @@
 package com.health.beefit.data
 
-class Message(var message: String, var sentBy: String) {
+import android.text.SpannableStringBuilder
+
+class Message(var message: SpannableStringBuilder, var sentBy: String) {
     companion object {
         const val SENT_BY_ME = "me"
         const val SENT_BY_BOT = "bot"

@@ -1,6 +1,11 @@
 package com.health.beefit.activities.fragments
 
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -76,7 +81,10 @@ class PlansFragment : Fragment() {
 
         sendButton.setOnClickListener {
             val question = messageEditText.text.toString().trim()
-            addToMsgList(question, Message.SENT_BY_ME)
+
+            // Use SpannableStringBuilder to style
+            val styledQ = styleChatSpeakerBold("YOU\n", question, 3)
+            addToMsgList(styledQ, Message.SENT_BY_ME)
             messageEditText.setText("")
             instructionTextView.visibility = View.GONE
 
@@ -96,20 +104,23 @@ class PlansFragment : Fragment() {
             lifecycleScope.launch {
                 try {
                     // Add "Typing..." message before making the API call
-                    addToMsgList("Typing...", Message.SENT_BY_BOT)
+                    val styledT = styleChatSpeakerBold("BOT\n", "Typing...", 3)
+                    addToMsgList(styledT, Message.SENT_BY_BOT)
 
                     // Make the API call
-                    val response = generativeModel.generateContent(question)
+                    val chat = generativeModel.startChat()
+                    val response = chat.sendMessage(question)
 
                     // Replace "Typing..." message with the actual response
                     response.text?.let { it1 ->
                         messageList.removeAt(messageList.size - 1)
-                        addToMsgList(it1, Message.SENT_BY_BOT)
+                        val styledR = styleChatSpeakerBold("BOT\n", it1, 3)
+                        addToMsgList(styledR, Message.SENT_BY_BOT)
                     }
                 } catch (e: Exception) {
                     Log.e("API RESPONSE ERROR", "An error occurred: ${e.message}", e)
                     messageList.removeAt(messageList.size - 1)
-                    addToMsgList("Something went wrong. Please enter your question again!", Message.SENT_BY_BOT)                }
+                    addToMsgList(SpannableStringBuilder("BOT\nSomething went wrong. Please enter your question again!"), Message.SENT_BY_BOT)                }
             }
         }
 
@@ -118,7 +129,15 @@ class PlansFragment : Fragment() {
         return view
     }
 
-    private fun addToMsgList(msg: String, sentBy: String) {
+    private fun styleChatSpeakerBold(speaker: String, content: String, end: Int): SpannableStringBuilder {
+        val styled = SpannableStringBuilder()
+        styled.append(speaker)
+        styled.append(content)
+        styled.setSpan(StyleSpan(Typeface.BOLD), 0, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        return styled
+    }
+
+    private fun addToMsgList(msg: SpannableStringBuilder, sentBy: String) {
         requireActivity().runOnUiThread {
             messageList.add(Message(msg, sentBy))
             messageAdapter.notifyDataSetChanged()
