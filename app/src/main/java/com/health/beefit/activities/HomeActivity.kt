@@ -46,17 +46,17 @@ class HomeActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.homeBottomNavigationView)
         val menu = bottomNavigationView.menu
-        menu.findItem(R.id.plansMenu).isVisible = true
+        menu.findItem(R.id.chatMenu).isVisible = true
         menu.findItem(R.id.storeMenu).isVisible = true
         menu.findItem(R.id.settingsMenu).isVisible = true
 
         // Set menu item selection listener
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.plansMenu -> {
+                R.id.chatMenu -> {
                     // Replace the current fragment with the plans fragment
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.homeFragmentContainerView, PlansFragment())
+                        .replace(R.id.homeFragmentContainerView, ChatFragment())
                         .commit()
                     true
                 }

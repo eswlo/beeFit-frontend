@@ -6,8 +6,8 @@
         android:title="Home"
         android:icon="@drawable/ic_baseline_home_24"/>
     <item
-        android:id="@+id/plansMenu"
-        android:title="Plans"
+        android:id="@+id/chatMenu"
+        android:title="Chat"
         android:icon="@drawable/ic_baseline_plans_24"/>
     <item
         android:id="@+id/storeMenu"

@@ -3,7 +3,6 @@ package com.health.beefit.activities.fragments
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.util.Log
@@ -14,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,12 +20,9 @@ import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.generationConfig
 import com.health.beefit.BuildConfig
 import com.health.beefit.R
-import com.health.beefit.adapters.PlansMessageAdapter
+import com.health.beefit.adapters.ChatMessageAdapter
 import com.health.beefit.data.Message
-import com.health.beefit.data.StoreItem
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,10 +31,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [PlansFragment.newInstance] factory method to
+ * Use the [ChatFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PlansFragment : Fragment() {
+class ChatFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -50,7 +45,7 @@ class PlansFragment : Fragment() {
     private lateinit var messageEditText: EditText
     private lateinit var sendButton: ImageButton
     private lateinit var messageList: ArrayList<Message>
-    private lateinit var messageAdapter: PlansMessageAdapter
+    private lateinit var messageAdapter: ChatMessageAdapter
 
     val API_KEY = BuildConfig.API_KEY
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,9 +61,9 @@ class PlansFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_plans, container, false)
+        val view = inflater.inflate(R.layout.fragment_chat, container, false)
         messageList = arrayListOf<Message>()
-        messageAdapter = PlansMessageAdapter(messageList)
+        messageAdapter = ChatMessageAdapter(messageList)
 
         recyclerView = view.findViewById(R.id.planRecyclerView)
         val llm = LinearLayoutManager(requireContext())
@@ -120,7 +115,8 @@ class PlansFragment : Fragment() {
                 } catch (e: Exception) {
                     Log.e("API RESPONSE ERROR", "An error occurred: ${e.message}", e)
                     messageList.removeAt(messageList.size - 1)
-                    addToMsgList(SpannableStringBuilder("BOT\nSomething went wrong. Please enter your question again!"), Message.SENT_BY_BOT)                }
+                    addToMsgList(SpannableStringBuilder("BOT\nSomething went wrong. Please enter your question again!"), Message.SENT_BY_BOT)
+                }
             }
         }
 
@@ -145,10 +141,6 @@ class PlansFragment : Fragment() {
         }
     }
 
-    private fun callAPI(question: String) {
-        //using okhttp
-
-    }
 
     companion object {
         /**
@@ -162,7 +154,7 @@ class PlansFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            PlansFragment().apply {
+            ChatFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

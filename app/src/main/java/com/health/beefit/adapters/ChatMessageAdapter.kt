@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.health.beefit.R
 import com.health.beefit.data.Message
 
-class PlansMessageAdapter(private val messageList: ArrayList<Message>): RecyclerView.Adapter<PlansMessageAdapter.ViewHolderClass>() {
+class ChatMessageAdapter(private val messageList: ArrayList<Message>): RecyclerView.Adapter<ChatMessageAdapter.ViewHolderClass>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.message_item_layout, parent, false)
