@@ -7,6 +7,11 @@ beeFit is a full-stack fitness-tracking plus loyalty program Android app that ai
   * [Backend Setup](#backend-setup)
   * [Frontend Setup](#frontend-setup)
 * [Usage](#usage)
+  * [Login and Signup](#login-and-signup)
+  * [Home](#home)
+  * [Chat](#chat)
+  * [Store](#store)
+  * [Settings](#settings)
 
 ## About
 Users can earn points by achieving their fitness goals and redeem rewards using the earned points to—hypothetically—shop at the retail stores that the app partners with.
@@ -47,7 +52,7 @@ private const val BASE_URL = "http://IP"
    * Pair your device in Android Studio and run the app.
 
 ## Usage
-### Login & Signup
+### Login and Signup
 Press buttons to log in or create a new account:
 </br>
 </br>
@@ -82,6 +87,9 @@ Account information can be updated here, and redeemed rewards can be viewed as w
 <img src="./docs/assets/demo_settings.jpg" width="200">
 <img src="./docs/assets/demo_account.jpg" width="200">
 <img src="./docs/assets/demo_viewRewards.jpg" width="200">
+
+## License
+Distributed under the MIT License.
 
 
 
