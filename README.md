@@ -49,7 +49,18 @@ private const val BASE_URL = "http://IP"
 ## Usage
 ### Login & Signup
 Press buttons to log in or create a new account:
+</br>
+</br>
+<img src="./docs/assets/demo_login_signup.jpg" width="200">
+<img src="./docs/assets/demo_login.jpg" width="200">
+<img src="./docs/assets/demo_signup.jpg" width="200">
 
+### Home
+Press the button to start tracking and monitoring workout activities, which allows users to earn points.
+</br>
+<img src="./docs/assets/demo_login_signup.jpg" width="200">
+</br>
+* The app relies on the accelerometer on the mobile device to determine whether the user is moving/exercising and the duration.  
 
 
 
