@@ -71,20 +71,20 @@ Press the button to start tracking and monitoring workout activities, which allo
 * The app relies on the accelerometer on the mobile device to determine whether the user is moving/exercising and the duration.
 
 ### Chat
-Chat with the AI bot to get some exercise ideas.
+Chat with the AI bot to get some exercise ideas:
 </br>
 </br>
 <img src="./docs/assets/demo_chat.jpg" width="200">
 
 ### Store
-Points earned through completing exercise activities can be used to redeem rewards in Store.
+Points earned through completing exercise activities can be used to redeem rewards in Store:
 </br>
 </br>
 <img src="./docs/assets/demo_store.jpg" width="200">
 <img src="./docs/assets/demo_redeem.jpg" width="200">
 
 ### Settings
-Account information can be updated here, and redeemed rewards can be viewed as well.
+Account information can be updated here, and redeemed rewards can be viewed and used as well:
 </br>
 </br>
 <img src="./docs/assets/demo_settings.jpg" width="200">
