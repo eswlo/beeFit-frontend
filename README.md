@@ -92,7 +92,7 @@ Account information can be updated here, and redeemed rewards can be viewed and 
 <img src="./docs/assets/demo_viewRewards.jpg" width="200">
 
 ## Acknowledgments
-This project would not have been possible without helps from local and online communities! Some of them are:
+This project would not have been possible without support and resources from local and online communities! Some of them are:
 * Members of Bug Slayer (Saharah, Jayden, and Weena) for their fabulous talents and contributions to beeFit's [original iOS frontend design/implementation](https://devpost.com/software/beefit?ref_content=existing_user_added_to_software_team&ref_feature=portfolio&ref_medium=email&utm_campaign=software&utm_content=added_to_software_team&utm_medium=email&utm_source=transactional) during the hackathon youCode 2024, where we were awarded an honorable mention :mechanical_arm:
 * [Coding Cleverly](https://www.youtube.com/@CodingCleverly)
 * [Android Knowledge](https://www.youtube.com/@android_knowledge)
