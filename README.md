@@ -1,9 +1,11 @@
 # beeFit
 beeFit is a full-stack fitness-tracking plus loyalty program Android app that aims to enhance omnichannel integration and encourage users to stay healthy.
 
-## Table of contents
+## Table of Contents
 * [About](#about)
 * [Getting Started](#getting-started)
+  * [Backend Setup](#backend-setup)
+  * [Frontend Setup](#frontend-setup)
 * [Usage](#usage)
 
 ## About
@@ -14,7 +16,7 @@ Please be advised that the brands and stores used in this app are for demonstrat
 ## Getting Started
 The following introduces how to set up the backend and frontend to run the app locally. 
 
-### Setting up the backend
+### Backend Setup
 * Clone [beeFit-backend](https://github.com/eswlo/beeFit-backend).
 * Download and install [Node.js](https://nodejs.org/en) if needed.
 * Set up [MongoDB](https://www.mongodb.com/) and have the connection string ready.
@@ -25,7 +27,7 @@ MONGODB_URI="CS"
 ```
 * Execute `npm run dev` in the terminal to connect to MongoDB.
 
-### Setting up frontend
+### Frontend Setup
 * Clone this repo and open it in Android Studio.
 * Obtain the GEMINI API key at https://ai.google.dev/gemini-api/docs/api-key
 * Locate `local.properties`, and add the following code into the file after replacing `AK` with your own api key
@@ -44,8 +46,7 @@ private const val BASE_URL = "http://IP"
 ```   
    * Pair your device in Android Studio and run the app.
 
-
-
+## Usage
 
 
 
