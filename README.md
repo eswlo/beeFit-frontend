@@ -68,7 +68,7 @@ Press the button to start tracking and monitoring workout activities, which allo
 </br>
 </br>
 <img src="./docs/assets/demo_home.jpg" width="200">
-* The app relies on the accelerometer on the mobile device to determine whether the user is moving/exercising and the duration.
+* The app relies on the accelerometer of the mobile device to determine whether the user is moving/exercising and record the duration for awarding points.
 
 ### Chat
 Chat with the AI bot to get some exercise ideas:
