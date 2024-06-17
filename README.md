@@ -12,6 +12,9 @@ beeFit is a full-stack fitness-tracking plus loyalty program Android app that ai
   * [Chat](#chat)
   * [Store](#store)
   * [Settings](#settings)
+* [Acknowledgments](#acknowledgments)
+* [License](#license)
+* [Contact](#contact)
 
 ## About
 Users can earn points by achieving their fitness goals and redeem rewards using the earned points to—hypothetically—shop at the retail stores that the app partners with.
@@ -88,8 +91,22 @@ Account information can be updated here, and redeemed rewards can be viewed as w
 <img src="./docs/assets/demo_account.jpg" width="200">
 <img src="./docs/assets/demo_viewRewards.jpg" width="200">
 
+## Acknowledgments
+This project would not have been possible without helps from local and online communities! Some of them are:
+* Members of Bug Slayer (Saharah, Jayden, and Weena) for their fabulous talents and contributions to beeFit's [original iOS frontend design/implementation](https://devpost.com/software/beefit?ref_content=existing_user_added_to_software_team&ref_feature=portfolio&ref_medium=email&utm_campaign=software&utm_content=added_to_software_team&utm_medium=email&utm_source=transactional) during the hackathon youCode 2024, where we were awarded an honorable mention :mechanical_arm:
+* [Coding Cleverly](https://www.youtube.com/@CodingCleverly)
+* [Android Knowledge](https://www.youtube.com/@android_knowledge)
+* [Philipp Lackner](https://www.youtube.com/channel/UCKNTZMRHPLXfqlbdOI7mCkg)
+* [freeCodeCamp](https://www.freecodecamp.org/)
+
 ## License
 Distributed under the MIT License.
+
+## Contact
+If you have any suggestions or questions, please get in touch and let me know!
+
+:email: s.lo@columbia.edu
+
 
 
 
