@@ -58,11 +58,30 @@ Press buttons to log in or create a new account:
 ### Home
 Press the button to start tracking and monitoring workout activities, which allows users to earn points.
 </br>
-<img src="./docs/assets/demo_login_signup.jpg" width="200">
 </br>
-* The app relies on the accelerometer on the mobile device to determine whether the user is moving/exercising and the duration.  
+<img src="./docs/assets/demo_home.jpg" width="200">
+* The app relies on the accelerometer on the mobile device to determine whether the user is moving/exercising and the duration.
 
+### Chat
+Chat with the AI bot to get some exercise ideas.
+</br>
+</br>
+<img src="./docs/assets/demo_chat.jpg" width="200">
 
+### Store
+Points earned through completing exercise activities can be used to redeem rewards in Store.
+</br>
+</br>
+<img src="./docs/assets/demo_store.jpg" width="200">
+<img src="./docs/assets/demo_redeem.jpg" width="200">
+
+### Settings
+Account information can be updated here, and redeemed rewards can be viewed as well.
+</br>
+</br>
+<img src="./docs/assets/demo_settings.jpg" width="200">
+<img src="./docs/assets/demo_account.jpg" width="200">
+<img src="./docs/assets/demo_viewRewards.jpg" width="200">
 
 
 
