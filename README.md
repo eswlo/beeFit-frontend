@@ -47,6 +47,10 @@ private const val BASE_URL = "http://IP"
    * Pair your device in Android Studio and run the app.
 
 ## Usage
+### Login & Signup
+![demo_login_signup](https://github.com/eswlo/beeFit-frontend/assets/162011391/e402f4dd-f8c7-4381-ace4-35e35c444075)
+
+
 
 
 
