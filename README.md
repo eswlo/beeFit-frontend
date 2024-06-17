@@ -11,14 +11,17 @@ The following introduces how to set up the backend and frontend to run the app l
 
 ### Setting up backend
 - Clone [beeFit-backend](https://github.com/eswlo/beeFit-backend).
-- Download and install Node.js if needed.
-- Set up MongoDB and have the connection string ready.
-- Open the folder in the terminal of your chosen IDE, and execute `npm install` to install necessary dependencies:
-- Create a `.env file` in the folder, replace `CS` in the following code and add into the file:
+- <a href="https://github.com/eswlo/beeFit-backend" target="_blank">beeFit-backend</a>
+- Download and install [Node.js](https://nodejs.org/en) if needed.
+- Set up [MongoDB](https://www.mongodb.com/) and have the connection string ready.
+- Open the cloned folder in your chosen IDE and execute `npm install` in the terminal to install necessary dependencies:
+- Create a `.env file` in the folder, and add the following code into the file after replacing `CS` with your MongoDB connection string:
 ```
 MONGODB_URI="CS"
 ```
 - Execute `npm run dev` in the terminal to connect to MongoDB.
+
+### Setting up frontend
 
 
 
