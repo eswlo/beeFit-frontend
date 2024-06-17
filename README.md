@@ -1,6 +1,11 @@
 # beeFit
 beeFit is a full-stack fitness-tracking plus loyalty program Android app that aims to enhance omnichannel integration and encourage users to stay healthy.
 
+## Table of contents
+* [About](#about)
+* [Getting Started](#getting-started)
+* [Usage](#usage)
+
 ## About
 Users can earn points by achieving their fitness goals and redeem rewards using the earned points to—hypothetically—shop at the retail stores that the app partners with.
 
