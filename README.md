@@ -1,5 +1,5 @@
 # beeFit
-beeFit is a full-stack fitness-tracking plus loyalty program Android app that aims to enhance omnichannel integration and encourage users to stay healthy.
+A full-stack fitness-tracking plus loyalty program Android app, bttFit aims to enhance omnichannel integration and encourage users to stay healthy.
 
 ## Table of Contents
 * [About](#about)
