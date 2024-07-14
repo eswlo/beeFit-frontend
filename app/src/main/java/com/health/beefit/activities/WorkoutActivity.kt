@@ -88,11 +88,12 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
             }
 
             // Convert counterSeconds into minutes for points
-            // May change the formula depending the need
+            // May change the formula depending on the need
 //            counterPoints = (counterSeconds % 3600) / 60
 //            earnedPoints += counterPoints
 
-            earnedPoints+= counterSeconds
+            counterSeconds *= 100 //for testing purposes only
+            earnedPoints += counterSeconds
             val updatePoints = UpdatePoints(earnedPoints)
             val call = apiService.updateEarnedPoints(userId, updatePoints)
 
